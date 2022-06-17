@@ -1,4 +1,4 @@
-��#include <File.au3>
+#include <File.au3>
 #include <Array.au3>
 #include <String.au3>
 #include <SAP2.au3>
@@ -45,7 +45,7 @@ Func lerExcel()
 		 ; Encerra o script
 			Exit
 
-	  ; H� APENAS UMA NOTA NA PLANILHA
+	  ; HÁ APENAS UMA NOTA NA PLANILHA
 	  ElseIf $sSegunda_nota = '' and $sSegunda_alinea = '' and $sSegunda_data = '' Then
 		 Local $sNota = _Excel_RangeRead($oWorkbook, Default, "A2")
 		 Local $sAlinea = _Excel_RangeRead($oWorkbook, Default, "B2")
@@ -126,8 +126,8 @@ Func _log()
    ; Cabe�alho
 	  $aLog[0][0] = '   Status  '
 	  $aLog[0][1] = '    Nota    '
-	  $aLog[0][2] = '        Al�nea       '
-	  $aLog[0][3] = '   Observa��o '
+	  $aLog[0][2] = '        Alínea       '
+	  $aLog[0][3] = '   Observação '
 
 	  $aLog[1][0] = '-----------'
 	  $aLog[1][1] = '------------'
