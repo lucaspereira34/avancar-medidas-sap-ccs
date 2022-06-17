@@ -123,7 +123,7 @@ Func _log()
    ; Array do LOG
 	  Global $aLog[UBound($aNota, $UBOUND_ROWS) + 2][4]
 
-   ; Cabe�alho
+   ; Cabeçalho
 	  $aLog[0][0] = '   Status  '
 	  $aLog[0][1] = '    Nota    '
 	  $aLog[0][2] = '        Alínea       '
@@ -188,8 +188,8 @@ Func avancarMedidas()
 
    ; Vincula à transação IW52
 	  _SAPSessAttach("[CLASS:SAP_FRONTEND_SESSION]", "IW52")
-	  WinWait('Modificar nota servi�o: 1� tela')
-	  WinActivate("Modificar nota servi�o: 1� tela")
+	  WinWait('Modificar nota serviço: 1º tela')
+	  WinActivate("Modificar nota servio: 1º tela")
 
    ; Entra em cada nota e avançaa as medidas de acordo com a Alinea
 	  For $i = 0 to UBound($aNota) - 1
@@ -200,7 +200,7 @@ Func avancarMedidas()
 
 		 While 1
 		 ; Continua apenas se a página da IW52 estiver carregada
-			WinWait('Modificar nota servi�o: 1� tela')
+			WinWait('Modificar nota serviço: 1º tela')
 
 		 ; Insere o número da nota
 			$sap_session.findById("wnd[0]/usr/ctxtRIWO00-QMNUM").text = $aNota[$i]
@@ -262,7 +262,7 @@ Func avancarMedidas()
 			   EndIf
 
 			; Identifica se a nota está em SOLICDOC ou se foi uma SOLCIDOC avançada para NOTINTER
-			   If $aAlinea[$i] = 'Solicita��o 90 dias' or $aAlinea[$i] = 'Solicita��o 5 anos' Then
+			   If $aAlinea[$i] = 'Solicitação 90 dias' or $aAlinea[$i] = 'Solicitação 5 anos' Then
 				  If $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB11/ssubSUB_GROUP_10:SAPLIQS0:7120/tblSAPLIQS0MASSNAHMEN_VIEWER/ctxtVIQMSM-MNGRP[1," & $iLinha_vazia - 1  & "]").text = "SOLICDOC" Then
 					 $bMedida_correta = True
 				  EndIf
@@ -303,7 +303,7 @@ Func avancarMedidas()
 			   $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB21/ssubSUB_GROUP_10:SAPLIQS0:7235/subCUSTOM_SCREEN:SAPLIQS0:7212/subSUBSCREEN_1:SAPLIQS0:7900/subUSER0001:SAPLXQQM:1200/ctxtE_ZCTNSCE-HORA_DOC").text = ""
 		 EndIf
 
-		 If $aAlinea[$i] = 'Solicita��o 90 dias' or $aAlinea[$i] = 'Solicita��o 5 anos' Then
+		 If $aAlinea[$i] = 'Solicitação 90 dias' or $aAlinea[$i] = 'Solicitação 5 anos' Then
 			; Insere a 'Data de Solicitação da Documentação'
 			   $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB21/ssubSUB_GROUP_10:SAPLIQS0:7235/subCUSTOM_SCREEN:SAPLIQS0:7212/subSUBSCREEN_1:SAPLIQS0:7900/subUSER0001:SAPLXQQM:1200/ctxtE_ZCTNSCE-DATA_SOL").text = $aData[$i]
 
@@ -376,7 +376,7 @@ Func avancarMedidas()
 
 		 ; Avanço/Finalização de notas
 
-		 If $aAlinea[$i] = 'Deferido' or $aAlinea[$i] = 'Deferido parcial' or $aAlinea[$i] = 'C' or $aAlinea[$i] = 'D' or $aAlinea[$i] = 'E' or $aAlinea[$i] = 'F' or $aAlinea[$i] = 'G' or $aAlinea[$i] = 'H' or $aAlinea[$i] = 'I' or $aAlinea[$i] = 'J' or $aAlinea[$i] = 'K' or $aAlinea[$i] = 'L' or $aAlinea[$i] = 'M' or $aAlinea[$i] = 'N' or $aAlinea[$i] = 'O' or $aAlinea[$i] = 'P' or $aAlinea[$i] = 'Q' or $aAlinea[$i] = 'R' or $aAlinea[$i] = 'S' or $aAlinea[$i] = 'T' or $aAlinea[$i] = 'U' or $aAlinea[$i] = 'V' or $aAlinea[$i] = 'W' or $aAlinea[$i] = 'Cortado' or $aAlinea[$i] = 'Suspens�o' or $aAlinea[$i] = 'Indeferido' Then
+		 If $aAlinea[$i] = 'Deferido' or $aAlinea[$i] = 'Deferido parcial' or $aAlinea[$i] = 'C' or $aAlinea[$i] = 'D' or $aAlinea[$i] = 'E' or $aAlinea[$i] = 'F' or $aAlinea[$i] = 'G' or $aAlinea[$i] = 'H' or $aAlinea[$i] = 'I' or $aAlinea[$i] = 'J' or $aAlinea[$i] = 'K' or $aAlinea[$i] = 'L' or $aAlinea[$i] = 'M' or $aAlinea[$i] = 'N' or $aAlinea[$i] = 'O' or $aAlinea[$i] = 'P' or $aAlinea[$i] = 'Q' or $aAlinea[$i] = 'R' or $aAlinea[$i] = 'S' or $aAlinea[$i] = 'T' or $aAlinea[$i] = 'U' or $aAlinea[$i] = 'V' or $aAlinea[$i] = 'W' or $aAlinea[$i] = 'Cortado' or $aAlinea[$i] = 'Suspensão' or $aAlinea[$i] = 'Indeferido' Then
 			; Avança de RECLPROC ou RECLIMPR para COMUNCLT
 			   $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB11/ssubSUB_GROUP_10:SAPLIQS0:7120/tblSAPLIQS0MASSNAHMEN_VIEWER").getAbsoluteRow($iLinha).selected = true
 			   $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB11/ssubSUB_GROUP_10:SAPLIQS0:7120/btnFC_ERLEDIGT").press
@@ -429,7 +429,7 @@ Func avancarMedidas()
 			   $sap_session.findById("wnd[0]/shellcont/shell").clickLink("0010","Column01")
 		 EndIf
 
-		 If $aAlinea[$i] = 'Solicita��o 90 dias' or $aAlinea[$i] = 'Solicita��o 5 anos' Then
+		 If $aAlinea[$i] = 'Solicitação 90 dias' or $aAlinea[$i] = 'Solicitação 5 anos' Then
 			; Avança de SOLICDOC para NOTINTER
 			   $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB11/ssubSUB_GROUP_10:SAPLIQS0:7120/tblSAPLIQS0MASSNAHMEN_VIEWER").getAbsoluteRow($iLinha).selected = true
 			   $sap_session.findById("wnd[0]/usr/tabsTAB_GROUP_10/tabp10\TAB11/ssubSUB_GROUP_10:SAPLIQS0:7120/btnFC_ERLEDIGT").press
